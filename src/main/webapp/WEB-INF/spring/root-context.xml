@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.3.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+		<property name="idleTimeout" value="30000" />
+		<property name="connectionTimeout" value="3000" />
+		<property name="maxLifetime" value="400000" />
+		<property name="maximumPoolSize" value="300" />
+		<property name="minimumIdle" value="20" />
+		<property name="driverClassName"
+			value="com.mysql.jdbc.Driver" />
+		<property name="jdbcUrl"
+			value="jdbc:mysql://192.168.0.131:3306/chat?useSSL=false&amp;serverTimezone=UTC" />
+		<property name="username" value="roa" />
+		<property name="password" value="Loa1965ab!!" />
+	</bean>
+
+	<bean id="hikariDataSource"
+		class="com.zaxxer.hikari.HikariDataSource">
+		<constructor-arg ref="hikariConfig" />
+	</bean>
+
+	<!-- mybatis setting -->
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="hikariDataSource" />
+	</bean>
+	
+	<mybatis-spring:scan base-package="com.roa.chat.dao" />	
+</beans>
