@@ -1,0 +1,14 @@
+#user-id-form {
+    display: flex;
+    column-gap: 10px;
+}
+
+#input-user-id, #input-user-email {
+    height: 100%;
+}
+
+#email-check-btn, #id-check-btn, #email-cert-btn {
+    height: auto;
+    margin: 0;
+    width: 100px;
+}

@@ -12,12 +12,14 @@ import javax.websocket.server.ServerEndpoint;
 
 import org.springframework.stereotype.Controller;
 
+import com.roa.chat.dto.UserDTO;
+
 @Controller
 @ServerEndpoint(value= "/chat_ws")
 public class WebSocketChatController {
 
-	private static final List<Session> sessionList = new ArrayList<Session>();
-
+	private static final List<UserDTO> sessionList = new ArrayList<UserDTO>();
+	
 	public WebSocketChatController() {
 		System.out.println("웹소켓(서버) 객체 생성");
 	}
@@ -31,20 +33,20 @@ public class WebSocketChatController {
 			e.printStackTrace();
 		}
 
-		sessionList.add(session);
+//		sessionList.add(session);
 	}
 
 	void sendAllSessionToMessage(Session self, String message) {
 
-		try {
-			for (Session session : sessionList) {
-				if (!self.getId().equals(session.getId())) {
-					session.getBasicRemote().sendText(message);
-				}
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+//		try {
+//			for (Session session : sessionList) {
+//				if (!self.getId().equals(session.getId())) {
+//					session.getBasicRemote().sendText(message);
+//				}
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 	}
 
 	@OnMessage
